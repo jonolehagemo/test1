@@ -1,0 +1,14 @@
+language: java
+jdk:
+  - oraclejdk8
+sudo: required
+env:
+  global:
+    - VERSION=1.${TRAVIS_BUILD_NUMBER}
+services:
+  - docker
+script:
+  - mvn clean
+  - mvn test -B
+  - mvn verify
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
